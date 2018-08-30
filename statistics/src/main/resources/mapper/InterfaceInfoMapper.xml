@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.syntrust.dao.InterfaceInfoDao">
+    <resultMap id="BaseResultMap" type="net.syntrust.entity.InterfaceInfo" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="interface_code" property="interfaceCode" jdbcType="VARCHAR" />
+        <result column="interface_desc" property="interfaceDescription" jdbcType="VARCHAR" />
+        <result column="interface_address" property="interfaceAddress" jdbcType="VARCHAR" />
+        <result column="request_type" property="requestType" jdbcType="VARCHAR" />
+        <result column="entry_parameters" property="entryParameters" jdbcType="BIGINT" />
+        <result column="results" property="results" jdbcType="VARCHAR" />
+        <result column="project_belong" property="projectBelong" jdbcType="VARCHAR" />
+        <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+        <result column="gmt_create" property="gmtCreate" jdbcType="BIGINT" />
+        <result column="gmt_modified" property="gmtModified" jdbcType="BIGINT" />
+        <result column="is_del" property="isDel" jdbcType="VARCHAR" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+        id,interface_code,interface_desc,interface_address,request_type,entry_parameters,results,project_belong,remarks,gmt_create,gmt_modified,is_del
+    </sql>
+    <insert id="insertInterface" parameterType="net.syntrust.entity.InterfaceInfo" >
+        insert into interface_info
+          (id,interface_code,interface_desc,interface_address,request_type,entry_parameters,results,project_belong,remarks,gmt_create,gmt_modified,is_del)
+           values
+          (#{id},#{interfaceCode},#{interfaceDescription},#{interfaceAddress},#{requestType},#{entryParameters},#{results},#{projectBelong},#{remarks},#{gmtCreate},#{gmtModified},#{isDel})
+    </insert>
+
+    <select id="queryInterfaceByLimit" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List" />
+        from interface_info
+        limit #{start},#{count}
+    </select>
+
+    <select id="selectInterfaceCount" resultType="Integer" parameterType="java.lang.Integer">
+		select count(*) from interface_info where is_del = 0
+	</select>
+
+    <select id="queryByInterfaceCode" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List" />
+        from interface_info
+        where interface_code = #{interfaceCode}
+    </select>
+    <update id="updateInterfaceInfoByCode" parameterType="java.lang.String">
+        update interface_info
+        <set>
+            <if test="interfaceCode != null" >
+                interface_code = #{interfaceCode},
+            </if>
+            <if test="interfaceDescription != null" >
+                interface_desc = #{interfaceDescription},
+            </if>
+            <if test="interfaceAddress != null" >
+                interface_address = #{interfaceAddress},
+            </if>
+            <if test="requestType != null" >
+                request_type = #{requestType},
+            </if>
+            <if test="entryParameters != null" >
+                entry_parameters = #{entryParameters},
+            </if>
+            <if test="results != null" >
+                results = #{results},
+            </if>
+            <if test="projectBelong != null" >
+                project_belong = #{projectBelong},
+            </if>
+            <if test="remarks != null" >
+                remarks = #{remarks},
+            </if>
+            <if test="gmtCreate != null" >
+                gmt_create = #{gmtCreate},
+            </if>
+            <if test="gmtModified != null" >
+                gmt_modified = #{gmtModified},
+            </if>
+            <if test="isDel != null" >
+                is_del = #{isDel}
+            </if>
+        </set>
+        where interface_code = #{interfaceCode}
+    </update>
+
+    <update id="deleteInterfaceInfoByCode" parameterType="java.lang.String">
+        update interface_info set is_del = 1 where interface_code = #{interfaceCode}
+    </update>
+</mapper>

@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.syntrust.dao.ProjectInfoDao">
+   <resultMap id="BaseResultMap" type="net.syntrust.entity.ProjectInfo" >
+        <result column="id" property="id" jdbcType="INTEGER" />
+        <result column="project_code" property="projectCode" jdbcType="VARCHAR" />
+        <result column="project_name" property="projectName" jdbcType="VARCHAR" />
+        <result column="business_director" property="businessDirector" jdbcType="VARCHAR" />
+        <result column="product_manager" property="productManager" jdbcType="VARCHAR" />
+        <result column="test_supervisor" property="testSupervisor" jdbcType="VARCHAR" />
+        <result column="basic_power_participants" property="basicPowerParticipants" jdbcType="VARCHAR" />
+        <result column="project_start_time" property="projectStartTime" jdbcType="BIGINT" />
+        <result column="project_end_time" property="projectEndTime" jdbcType="BIGINT" />
+        <result column="demand_side" property="demandSide" jdbcType="VARCHAR" />
+        <result column="business_conditions" property="businessConditions" jdbcType="VARCHAR" />
+        <result column="current_stage" property="currentStage" jdbcType="VARCHAR" />
+        <result column="acceptance_time" property="acceptanceTime" jdbcType="BIGINT" />
+        <result column="project_budget" property="projectBudget" jdbcType="VARCHAR" />
+        <result column="budget_source" property="budgetSource" jdbcType="VARCHAR" />
+        <result column="project_introduction" property="projectIntroduction" jdbcType="VARCHAR" />
+        <result column="terminal" property="terminal" jdbcType="VARCHAR" />
+        <result column="access_address" property="accessAddress" jdbcType="VARCHAR" />
+        <result column="main_page" property="mainPage" jdbcType="VARCHAR" />
+        <result column="test_account" property="testAccount" jdbcType="VARCHAR" />
+        <result column="test_password" property="testPassword" jdbcType="VARCHAR" />
+       <result column="server_info" property="serverInfo" jdbcType="VARCHAR" />
+       <result column="address_info" property="addressInfo" jdbcType="VARCHAR" />
+       <result column="svn_path_info" property="svnPathInfo" jdbcType="VARCHAR" />
+       <result column="third_party_services" property="thirdPartyServices" jdbcType="VARCHAR" />
+       <result column="subprojects" property="subprojects" jdbcType="VARCHAR" />
+       <result column="project_add_time" property="projectAddTime" jdbcType="BIGINT" />
+       <result column="update_time" property="updateTime" jdbcType="VARCHAR" />
+       <result column="technical_documents" property="technicalDocuments" jdbcType="VARCHAR" />
+       <result column="interface_documents" property="interfaceDocuments" jdbcType="VARCHAR" />
+       <result column="white_paper" property="whitePaper" jdbcType="VARCHAR" />
+       <result column="request_documents" property="requestDocuments" jdbcType="VARCHAR" />
+       <result column="data_source_info" property="dataSourceInfo" jdbcType="VARCHAR" />
+       <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+       <result column="gmt_create" property="gmtCreate" jdbcType="BIGINT" />
+       <result column="gmt_modified" property="gmtModified" jdbcType="BIGINT" />
+       <result column="is_del" property="isDel" jdbcType="VARCHAR" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+        id,project_code,project_name,business_director,product_manager,test_supervisor,basic_power_participants,project_start_time,project_end_time,demand_side,business_conditions,current_stage,acceptance_time,project_budget,budget_source,project_introduction,terminal,main_page,test_account,test_password,server_infosvn_path_info,third_party_services,subprojects,project_add_time,update_time,technical_documents,interface_documents,white_paper,data_source_info,remarks,gmt_create,gmt_modified,is_del
+    </sql>
+    <insert id="insertProject" parameterType="net.syntrust.entity.ProjectInfo">
+      insert into project_info
+      (id,
+      project_code,
+        project_name,
+        business_director,
+        product_manager,
+        test_supervisor,
+        basic_power_participants,
+        project_start_time,
+        project_end_time,
+        demand_side,
+        business_conditions,
+        current_stage,
+        acceptance_time,
+        project_budget,
+        budget_source,
+        project_introduction,
+        terminal,
+        access_address,
+        main_page,
+        test_account,
+        test_password,
+       server_info,
+       address_info,
+       svn_path_info,
+       third_party_services,
+       subprojects,
+       project_add_time,
+       update_time,
+       technical_documents,
+       interface_documents,
+       white_paper,
+       request_documents,
+       data_source_info,
+       remarks,
+       gmt_create,
+       gmt_modified,
+       is_del
+      )
+       values
+      (
+        #{id},
+        #{projectCode},
+        #{projectName},
+		#{businessDirector},
+		#{productManager},
+        #{testSupervisor},
+        #{basicPowerParticipants},
+        #{projectStartTime},
+        #{projectEndTime},
+        #{demandSide},
+        #{businessConditions},
+        #{currentStage},
+        #{acceptanceTime},
+        #{projectBudget},
+        #{budgetSource},
+        #{projectIntroduction},
+        #{terminal},
+        #{accessAddress},
+		#{mainPage},
+        #{testAccount},
+        #{testPassword},
+		#{serverInfo},
+		#{addressInfo},
+		#{svnPathInfo},
+		#{thirdPartyServices},
+		#{subprojects},
+		#{projectAddTime},
+		#{updateTime},
+		#{technicalDocuments},
+		#{interfaceDocuments},
+		#{whitePaper},
+		#{requestDocuments},
+		#{dataSourceInfo},
+		#{remarks},
+		#{gmtCreate},
+		#{gmtModified},
+		#{isDel}
+      )
+    </insert>
+
+    <select id="queryProjectByLimit" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List" />
+        from project_info
+        limit #{start},#{count}
+    </select>
+
+    <select id="selectprojectCount" resultType="Integer" parameterType="java.lang.Integer">
+		select count(*) from project_info where is_del = 0
+	</select>
+
+    <select id="queryByProjectCode" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List" />
+        from project_info
+        where project_code = #{projectCode}
+    </select>
+    <update id="updateProjectInfoByCode" parameterType="java.lang.String">
+        update project_info
+        <set>
+            <if test="projectCode != null" >
+                project_code = #{projectCode}
+            </if>
+            <if test="projectName != null" >
+                project_name = #{projectName}
+            </if>
+            <if test="businessDirector != null" >
+                business_director = #{businessDirector}
+            </if>
+            <if test="productManager != null" >
+                product_manager = #{productManager}
+            </if>
+            <if test="testSupervisor != null" >
+                test_supervisor = #{testSupervisor}
+            </if>
+            <if test="basicPowerParticipants != null" >
+                basic_power_participants = #{basicPowerParticipants}
+            </if>
+            <if test="projectStartTime != null" >
+                project_start_time = #{projectStartTime}
+            </if>
+            <if test="projectEndTime != null" >
+                project_end_time = #{projectEndTime}
+            </if>
+            <if test="demandSide != null" >
+                demand_side = #{demandSide}
+            </if>
+            <if test="businessConditions != null" >
+                business_conditions = #{businessConditions}
+            </if>
+            <if test="currentStage != null" >
+                current_stage = #{currentStage}
+            </if>
+            <if test="acceptanceTime != null" >
+                acceptance_time = #{acceptanceTime}
+            </if>
+            <if test="projectBudget != null" >
+                project_budget = #{projectBudget}
+            </if>
+            <if test="budgetSource != null" >
+                budget_source = #{budgetSource}
+            </if>
+            <if test="projectIntroduction != null" >
+                project_introduction = #{projectIntroduction}
+            </if>
+            <if test="terminal != null" >
+                terminal = #{terminal}
+            </if>
+            <if test="accessAddress != null" >
+                access_address = #{accessAddress}
+            </if>
+            <if test="mainPage != null" >
+                main_page = #{mainPage}
+            </if>
+            <if test="testAccount != null" >
+                test_account = #{testAccount}
+            </if>
+            <if test="testPassword != null" >
+                test_password = #{testPassword}
+            </if>
+            <if test="serverInfo != null" >
+                server_info = #{serverInfo}
+            </if>
+            <if test="addressInfo != null" >
+                address_info = #{addressInfo}
+            </if>
+            <if test="svnPathInfo != null" >
+                svn_path_info = #{svnPathInfo}
+            </if>
+            <if test="thirdPartyServices != null" >
+                third_party_services = #{thirdPartyServices}
+            </if>
+            <if test="subprojects != null" >
+                subprojects = #{subprojects}
+            </if>
+            <if test="projectAddTime != null" >
+                project_add_time = #{projectAddTime}
+            </if>
+            <if test="updateTime != null" >
+                update_time = #{updateTime}
+            </if>
+            <if test="technicalDocuments != null" >
+                technical_documents = #{technicalDocuments}
+            </if>
+            <if test="interfaceDocuments != null" >
+                interface_documents = #{interfaceDocuments}
+            </if>
+            <if test="whitePaper != null" >
+                white_paper = #{whitePaper}
+            </if>
+            <if test="requestDocuments != null" >
+                request_documents = #{requestDocuments}
+            </if>
+            <if test="dataSourceInfo != null" >
+                data_source_info = #{dataSourceInfo}
+            </if>
+            <if test="remarks != null" >
+                remarks = #{remarks},
+            </if>
+            <if test="gmtCreate != null" >
+                gmt_create = #{gmtCreate},
+            </if>
+            <if test="gmtModified != null" >
+                gmt_modified = #{gmtModified},
+            </if>
+            <if test="isDel != null" >
+                is_del = #{isDel}
+            </if>
+        </set>
+        where project_code = #{projectCode}
+    </update>
+
+    <update id="deleteProjectInfoByCode" parameterType="java.lang.String">
+        update project_info set is_del = 1 where project_code = #{projectCode}
+    </update>
+
+</mapper>

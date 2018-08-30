@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.syntrust.dao.DataSourceInfoDao">
+    <resultMap id="BaseResultMap" type="net.syntrust.entity.DataSourceInfo" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="database_code" property="databaseCode" jdbcType="VARCHAR" />
+        <result column="database_desc" property="databaseDescription" jdbcType="VARCHAR" />
+        <result column="account" property="account" jdbcType="VARCHAR" />
+        <result column="password" property="password" jdbcType="VARCHAR" />
+        <result column="data_quantity" property="dataQuantity" jdbcType="BIGINT" />
+        <result column="table_dtructure_desc" property="tableDtructureDescription" jdbcType="VARCHAR" />
+        <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+        <result column="gmt_create" property="gmtCreate" jdbcType="BIGINT" />
+        <result column="gmt_modified" property="gmtModified" jdbcType="BIGINT" />
+        <result column="is_del" property="isDel" jdbcType="VARCHAR" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+        id,database_code,database_desc,account,password,data_quantity,table_dtructure_desc,remarks,gmt_create,gmt_modified,is_del
+    </sql>
+    <insert id="insertDataSource" parameterType="net.syntrust.entity.DataSourceInfo" >
+       insert into data_source_info
+        (id,database_code,database_desc,account,password,data_quantity,table_dtructure_desc,remarks,gmt_create,gmt_modified,is_del)
+       values
+        (#{id},#{databaseCode},#{databaseDescription},#{account},#{password},#{dataQuantity},#{tableDtructureDescription},#{remarks},#{gmtCreate},#{gmtModified},#{isDel})
+    </insert>
+
+    <select id="queryByDatabaseCode" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from data_source_info
+        where database_code = #{databaseCode}
+    </select>
+
+    <select id="queryByLimit" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List" />
+        from data_source_info
+        limit #{start},#{count}
+    </select>
+
+    <select id="queryByAccountAndCode" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List" />
+        from data_source_info
+        where account = #{account} and database_code = #{databaseCode}
+    </select>
+    <select id="queryByCode" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List" />
+        from data_source_info
+        where database_code = #{databaseCode}
+    </select>
+
+    <select id="selectCount" resultType="Integer" parameterType="java.lang.Integer">
+		select count(*) from data_source_info where is_del = 0
+	</select>
+
+    <update id="updateDataSourceInfoByCode" parameterType="java.lang.String">
+        update data_source_info
+        <set>
+            <if test="databaseCode != null" >
+                database_code = #{databaseCode},
+            </if>
+            <if test="databaseDescription != null" >
+                database_desc = #{databaseDescription},
+            </if>
+            <if test="account != null" >
+                account = #{account},
+            </if>
+            <if test="password != null" >
+                password = #{password},
+            </if>
+            <if test="dataQuantity != null" >
+                data_quantity = #{dataQuantity},
+            </if>
+            <if test="tableDtructureDescription != null" >
+                table_dtructure_desc = #{tableDtructureDescription},
+            </if>
+            <if test="remarks != null" >
+                remarks = #{remarks},
+            </if>
+            <if test="gmtCreate != null" >
+                gmt_create = #{gmtCreate},
+            </if>
+            <if test="gmtModified != null" >
+                gmt_modified = #{gmtModified},
+            </if>
+            <if test="isDel != null" >
+                is_del = #{isDel}
+            </if>
+        </set>
+        where database_code = #{databaseCode}
+    </update>
+
+    <update id="deleteDataSourceInfoByAccount" parameterType="java.lang.String">
+        update data_source_info set is_del = 1 where account = #{account}
+    </update>
+
+    <update id="deleteDataSourceInfoByCode" parameterType="java.lang.String">
+        update data_source_info set is_del = 1 where database_code = #{databaseCode}
+    </update>
+</mapper>
