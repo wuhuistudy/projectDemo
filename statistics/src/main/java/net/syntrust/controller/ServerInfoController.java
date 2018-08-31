@@ -1,6 +1,5 @@
 package net.syntrust.controller;
 
-import net.syntrust.entity.InterfaceInfo;
 import net.syntrust.entity.PageInfo;
 import net.syntrust.entity.Return;
 import net.syntrust.entity.ServerInfo;
@@ -24,13 +23,13 @@ public class ServerInfoController {
 
     @RequestMapping("/insert")
     @ResponseBody
-    public String insertServer(){
+    public String insertServer(HttpServletRequest req, HttpServletResponse res){
         ServerInfo serverInfo = new ServerInfo();
-        serverInfo.setAccessRestriction("00000");
-        serverInfo.setIpAddress("1111");
+        serverInfo.setAccessRestriction(req.getParameter("accessRestriction"));
+        serverInfo.setIpAddress("777");
         serverInfo.setIsDel(0);
-        serverInfo.setUserName("123456");
-        serverInfo.setPassWord("123456");
+        serverInfo.setUserName("666");
+        serverInfo.setPassWord("555");
         serverInfoService.insertServer(serverInfo);
         return "InsertSuccess";
     }
