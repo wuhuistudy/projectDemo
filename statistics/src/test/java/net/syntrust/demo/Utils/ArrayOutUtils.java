@@ -5,8 +5,7 @@ package net.syntrust.demo.Utils;
  * @version C10 2018/9/19
  * @since SDP V300R003C10
  */
-public class ArrayOutUtils
-{
+public class ArrayOutUtils {
     /**
      * @return void
      * @Author wuhui
@@ -14,20 +13,13 @@ public class ArrayOutUtils
      * @Date 2018/9/19
      * @Param [arr]
      **/
-    public static void soutMethod(int[] arr)
-    {
-        for (int i = 0; i < arr.length; i++)
-        {
-            if (i == 0)
-            {
+    public static void soutMethod(int[] arr) {
+        for (int i = 0; i < arr.length; i++) {
+            if (i == 0) {
                 System.out.print("[" + arr[i] + ",");
-            }
-            else if (i == arr.length - 1)
-            {
+            } else if (i == arr.length - 1) {
                 System.out.print(arr[i] + "]");
-            }
-            else
-            {
+            } else {
                 System.out.print(arr[i] + ",");
             }
         }

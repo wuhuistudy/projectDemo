@@ -8,8 +8,7 @@ package net.syntrust.demo.SortCollections;
  * @version C10 2018/9/19
  * @since SDP V300R003C10
  */
-public class SelectionSort
-{
+public class SelectionSort {
     /**
      * @return void
      * @Author wuhui
@@ -17,15 +16,11 @@ public class SelectionSort
      * @Date 2018/9/20
      * @Param [arr]
      **/
-    public static void sele(int[] arr)
-    {
-        for (int i = 0; i < arr.length - 1; i++)
-        {
-            for (int j = i + 1; j < arr.length; j++)
-            {
+    public static void sele(int[] arr) {
+        for (int i = 0; i < arr.length - 1; i++) {
+            for (int j = i + 1; j < arr.length; j++) {
                 int temp;
-                if (arr[j] < arr[i])
-                {
+                if (arr[j] < arr[i]) {
                     temp = arr[i];
                     arr[i] = arr[j];
                     arr[j] = temp;

@@ -7,8 +7,7 @@ package net.syntrust.demo.SortCollections;
  * @version C10 2018/9/19
  * @since SDP V300R003C10
  */
-public class BubbleSort
-{
+public class BubbleSort {
     /**
      * @return void
      * @Author wuhui
@@ -16,15 +15,11 @@ public class BubbleSort
      * @Date 2018/9/19
      * @Param [arr]
      **/
-    public static void bubb(int[] arr)
-    {
-        for (int i = 0; i < arr.length; i++)
-        {
-            for (int j = 0; j < arr.length - i - 1; j++)
-            {
+    public static void bubb(int[] arr) {
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 0; j < arr.length - i - 1; j++) {
                 int temp;
-                if (arr[j] > arr[j + 1])
-                {
+                if (arr[j] > arr[j + 1]) {
                     temp = arr[j];
                     arr[j] = arr[j + 1];
                     arr[j + 1] = temp;

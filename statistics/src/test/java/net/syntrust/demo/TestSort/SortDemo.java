@@ -10,10 +10,8 @@ import net.syntrust.demo.Utils.ArrayOutUtils;
  * @version C10 2018/9/19
  * @since SDP V300R003C10
  */
-public class SortDemo
-{
-    public static void main(String[] args)
-    {
+public class SortDemo {
+    public static void main(String[] args) {
         int[] arr = {5, 6, 9, 7, 3, 89, 33, 44, 20, 14};
         // 冒泡排序
         //BubbleSort.bubb(arr);
