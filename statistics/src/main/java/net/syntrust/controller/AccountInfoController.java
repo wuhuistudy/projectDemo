@@ -17,7 +17,6 @@ public class AccountInfoController {
     @RequestMapping
     public Return insertAccount(HttpServletRequest req, HttpServletResponse res){
         String account = req.getParameter("account");
-
         return new Return();
     }
 }
