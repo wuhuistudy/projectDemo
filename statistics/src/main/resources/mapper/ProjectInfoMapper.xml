@@ -38,7 +38,7 @@
        <result column="remarks" property="remarks" jdbcType="VARCHAR" />
        <result column="gmt_create" property="gmtCreate" jdbcType="BIGINT" />
        <result column="gmt_modified" property="gmtModified" jdbcType="BIGINT" />
-       <result column="is_del" property="isDel" jdbcType="VARCHAR" />
+       <result column="is_del" property="isDel" jdbcType="INTEGER" />
     </resultMap>
     <sql id="Base_Column_List" >
         id,project_code,project_name,business_director,product_manager,test_supervisor,basic_power_participants,project_start_time,project_end_time,demand_side,business_conditions,current_stage,acceptance_time,project_budget,budget_source,project_introduction,terminal,main_page,test_account,test_password,server_infosvn_path_info,third_party_services,subprojects,project_add_time,update_time,technical_documents,interface_documents,white_paper,data_source_info,remarks,gmt_create,gmt_modified,is_del

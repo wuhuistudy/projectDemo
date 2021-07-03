@@ -13,7 +13,7 @@
         <result column="remarks" property="remarks" jdbcType="VARCHAR" />
         <result column="gmt_create" property="gmtCreate" jdbcType="BIGINT" />
         <result column="gmt_modified" property="gmtModified" jdbcType="BIGINT" />
-        <result column="is_del" property="isDel" jdbcType="VARCHAR" />
+        <result column="is_del" property="isDel" jdbcType="INTEGER" />
     </resultMap>
     <sql id="Base_Column_List" >
         id,interface_code,interface_desc,interface_address,request_type,entry_parameters,results,project_belong,remarks,gmt_create,gmt_modified,is_del

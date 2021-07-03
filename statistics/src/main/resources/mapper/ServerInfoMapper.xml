@@ -7,7 +7,7 @@
         <result column="machine_room_name" property="machineRoomName" jdbcType="VARCHAR" />
         <result column="memory" property="memory" jdbcType="VARCHAR" />
         <result column="hard_disk" property="hardDisk" jdbcType="VARCHAR" />
-        <result column="system" property="system" jdbcType="BIGINT" />
+        <result column="system" property="system" jdbcType="VARCHAR" />
         <result column="ip_address" property="ipAddress" jdbcType="VARCHAR" />
         <result column="network_band_width" property="netWorkBandWidth" jdbcType="VARCHAR" />
         <result column="user_name" property="userName" jdbcType="VARCHAR" />
@@ -17,7 +17,7 @@
         <result column="remarks" property="remarks" jdbcType="VARCHAR" />
         <result column="gmt_create" property="gmtCreate" jdbcType="BIGINT" />
         <result column="gmt_modified" property="gmtModified" jdbcType="BIGINT" />
-        <result column="is_del" property="isDel" jdbcType="VARCHAR" />
+        <result column="is_del" property="isDel" jdbcType="INTEGER" />
     </resultMap>
     <sql id="Base_Column_List" >
         id,server_code,machine_room_name,memory,hard_disk,system,ip_address,network_band_width,user_name,pass_word,access_restriction,project_info,remarks,gmt_create,gmt_modified,is_del
